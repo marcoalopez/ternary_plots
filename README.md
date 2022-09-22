@@ -1,6 +1,9 @@
 # No-fuss ternary plots in Python
 
+_Brought to you by [Marco A. Lopez-Sanchez](https://marcoalopez.github.io/) - Last update: 2022-09-22_
+
 ## **What is a ternary plot?**  
+
 A [ternary plot](https://en.wikipedia.org/wiki/Ternary_plot) is a triangular diagram that displays the proportion of three variables that sum to a constant, usually 1 or 100%. It is a common diagram in solid-earth sciences but is also used in other physical sciences.
 
 ## **What is the purpose of this repository?**  
@@ -166,10 +169,10 @@ ax.legend(fontsize=14)
 
 ### Real life examples
 
-It is basically a two-step process:
+To create ternary diagrams in this way, it is always the same two-step process:
 
-1) Normalise and convert your ternary coordinates to Cartesian coordinates. For this you will need to use the ``tri2cart()`` function.
-2) Then initialize your ternary diagram using the function ``ternary()`` and use your ususal matplolib commands (plot, scatter, etc.)
+1) Normalise and convert your ternary coordinates to Cartesian coordinates. For this you will use the ``tri2cart()`` function.
+2) Then initialize your ternary diagram using the function ``ternary()`` and use your ususal matplolib commands (``plot()``, ``scatter()``, etc.)
 
 > **Important: Usage example, jupyter notebooks and script will be available soon**
 
@@ -177,13 +180,13 @@ It is basically a two-step process:
 
 ## License
 
-[![Creative Commons Licence](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
-The notebooks are licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License and codes under [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
+[![Creative Commons Licence](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
+The notebooks are licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/) and codes under [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
 
 ---
 
 _Copyright © 2022 Marco A. Lopez-Sanchez_  
 
-_Information presented on this website and the notebooks is provided without any express or implied warranty and may include technical inaccuracies or typing errors; the author reserve the right to modify or enhance the content of this website as well as the notebooks at any time without previous notice. This webpage and the notebooks are not liable for the content of external links.  
+_Information presented on this website and the notebooks is provided without any express or implied warranty and may include technical inaccuracies or typing errors; the author reserve the right to modify or enhance the content of this website as well as the notebooks at any time without previous notice. This webpage and the notebooks are not liable for the content of external links._  
 
 _Hosted on GitHub Pages_
