@@ -143,7 +143,7 @@ def ternary(upper_label=None, left_label=None, right_label=None, **fig_kw):
 fig, ax = ternary()
 ```
 
-![primitives](C:\Users\Marco\Documents\GitHub\ternary_plots\imgs\primitives.png)
+![primitives](https://raw.githubusercontent.com/marcoalopez/ternary_plots/main/imgs/primitives.png)
 
 Plotting some points for reference
 
@@ -158,7 +158,7 @@ ax.plot(tri2cartX(1/3, 1/3, 1/3), tri2cartY(1/3, 1/3, 1/3), 'o', markersize=12, 
 ax.legend(fontsize=14)
 ```
 
-![first example](C:\Users\Marco\Documents\GitHub\ternary_plots\imgs\first example.png)
+![first example](https://raw.githubusercontent.com/marcoalopez/ternary_plots/main/imgs/first%20example.png)
 
 
 
