@@ -20,10 +20,6 @@ from types import SimpleNamespace
 
 # other modules used in the examples
 import numpy as np
-
-# set a custom figure style (this is optional, you can comment on this whole block)
-import matplotlib as mpl
-mpl.rcParams['font.family'] = 'Open Sans' 
 ```
 
 Below we define three different Python functions that convert from ternary to Cartesian coordinates
@@ -139,7 +135,43 @@ def ternary(upper_label=None, left_label=None, right_label=None, **fig_kw):
     return fig, ax
 ```
 
-> **Important: Usage examples will be available soon**
+## Examples
+
+
+```python
+# show figure primitives
+fig, ax = ternary()
+```
+
+![primitives](C:\Users\Marco\Documents\GitHub\ternary_plots\imgs\primitives.png)
+
+Plotting some points for reference
+
+```python
+fig, ax = ternary(upper_label='upper label', left_label='left label', right_label='right label')
+
+ax.plot(tri2cartX(1, 0, 0), tri2cartY(1, 0, 0), 'o', markersize=12, label='(1,0,0)')
+ax.plot(tri2cartX(0, 1, 0), tri2cartY(0, 1, 0), 'o', markersize=12, label='(0,1,0)')
+ax.plot(tri2cartX(0, 0, 1), tri2cartY(0, 0, 1), 'o', markersize=12, label='(0,0,1)')
+ax.plot(tri2cartX(1/3, 1/3, 1/3), tri2cartY(1/3, 1/3, 1/3), 'o', markersize=12, label='the centre')
+
+ax.legend(fontsize=14)
+```
+
+![first example](C:\Users\Marco\Documents\GitHub\ternary_plots\imgs\first example.png)
+
+
+
+
+
+### Real life examples
+
+It is basically a two-step process:
+
+1) Normalise and convert your ternary coordinates to Cartesian coordinates. For this you will need to use the ``tri2cart()`` function.
+2) Then initialize your ternary diagram using the function ``ternary()`` and use your ususal matplolib commands (plot, scatter, etc.)
+
+> **Important: Usage example, jupyter notebooks and script will be available soon**
 
 
 
