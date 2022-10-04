@@ -1,6 +1,5 @@
-# No-fuss ternary plots in Python
-
-_Brought to you by [Marco A. Lopez-Sanchez](https://marcoalopez.github.io/) - Last update: 2022-09-25_
+![](https://github.com/marcoalopez/ternary_plots/blob/main/imgs/header.jpg?raw=true)
+_Brought to you by [Marco A. Lopez-Sanchez](https://marcoalopez.github.io/) - Last update: 2022-10-04_
 
 ## **What is a ternary plot?**  
 
