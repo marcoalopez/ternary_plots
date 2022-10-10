@@ -11,9 +11,7 @@ You want to use ternary diagrams in your Jupyter notebook (or Python script). Sa
 \*_I have nothing against these libraries, quite the opposite, if you need more advanced features use them!_
 
 ## **How to use it?**  
-Simply copy and paste the functions into your Jupyter notebook cells and follow the usage examples. Alternatively, you can download the python file containing the functions and save it to the same folder where your notebook is located. Then simply run the script using ``%run ternary.py`` or import it as a module.
-
-The modules you must import
+Simply copy and paste the functions into your Jupyter notebook cells and follow the usage examples.
 
 ```python
 # this is the minimum modules you must import to make it work
@@ -66,7 +64,7 @@ Finally, the function that create the ternary plot using matplolib
 
 ```python
 def ternary(upper_label=None, left_label=None, right_label=None, **fig_kw):
-    """ No fuss ternary plot using matplotlib, meaning: A simple
+    """ No-fuss ternary plot using matplotlib, meaning: A simple
     ternary diagram using matplolib with the minimum necessary
     elements. It requires no other dependencies than matplolib.
     Returns the figure and axe objects with which you can use the
@@ -137,6 +135,8 @@ def ternary(upper_label=None, left_label=None, right_label=None, **fig_kw):
     return fig, ax
 ```
 
+Alternatively, you can download the python file containing the functions [here](https://github.com/marcoalopez/ternary_plots/releases/download/v1.0/mpl_ternary.py) and save it to the same folder where your notebook is located. Then simply run the script using ``%run mpl_ternary.py`` or import it as a module. More details in https://github.com/marcoalopez/ternary_plots/blob/main/example_two.ipynb
+
 ## Examples
 
 
@@ -173,7 +173,7 @@ To use ternary diagrams it is always the same two-step process:
 1) Normalise and convert your ternary coordinates to Cartesian ones. For this you will use the ``tri2cart()`` function.
 2) Then initialize your ternary diagram using the ``ternary()`` function and use your ususal matplolib commands (``plot()``, ``scatter()``, etc.)
 
-> **Important: Usage example, jupyter notebooks and script will be available soon**
+> **Important: Usage examples will be available soon**
 
 
 
