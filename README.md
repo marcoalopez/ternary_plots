@@ -1,5 +1,5 @@
 ![](https://github.com/marcoalopez/ternary_plots/blob/main/imgs/header.jpg?raw=true)
-_Brought to you by [Marco A. Lopez-Sanchez](https://marcoalopez.github.io/) - Last update: 2022-10-19_
+_Brought to you by [Marco A. Lopez-Sanchez](https://marcoalopez.github.io/) - Last update: 2022-11-22_
 
 ## **What is a ternary plot?**  
 
