@@ -1,12 +1,12 @@
 ![](https://github.com/marcoalopez/ternary_plots/blob/main/imgs/header.jpg?raw=true)
-_Brought to you by [Marco A. Lopez-Sanchez](https://marcoalopez.github.io/) - Last update: 2022-11-22_
+_Brought to you by [Marco A. Lopez-Sanchez](https://marcoalopez.github.io/) - Last update: 2026-11-16_
 
 ## **What is a ternary plot?**  
 
 A [ternary plot](https://en.wikipedia.org/wiki/Ternary_plot) is a triangular diagram that displays the proportion of three variables that sum to a constant, usually 1 or 100%. It is a common diagram in solid-earth but also in other physical sciences.
 
 ## **What is the purpose of this repository?**  
-You want to use ternary diagrams in your Jupyter notebook (or Python script). Sadly you realise that matplolib does not have ternary plots by default. After some research on the internet, you realise that the alternatives are either to install other plotting libraries (e.g. [Plotly](https://plotly.com/python/ternary-plots/)) or third-party libraries that rely on matplolib (e.g. [python-ternary](https://github.com/marcharper/python-ternary) or [mpltern](https://mpltern.readthedocs.io/en/latest/index.html)). Unfortunately, you don't feel like learning a new syntax for plotting (you are too comfortable with your matplolib buddy) or don't want to install a new Python library with all that this entails (dependencies, etc.) and that it seem overkill for your needs\*. This is where the good news comes in. You can create a barebones ternary diagram with the minimum necessary elements in matplolib in few lines of code. In short, **no installations, no new dependencies, your usual matplolib syntax, and no fuss**.
+You want to use ternary diagrams in your Jupyter notebook (or Python script). Sadly you realise that Matplotlib does not have ternary plots by default. After some research on the internet, you realise that the alternatives are either to install other plotting libraries (e.g. [Plotly](https://plotly.com/python/ternary-plots/)) or third-party libraries that rely on Matplotlib (e.g. [python-ternary](https://github.com/marcharper/python-ternary) or [mpltern](https://mpltern.readthedocs.io/en/latest/index.html)). Unfortunately, you don't feel like learning a new syntax for plotting (you are too comfortable with your Matplotlib buddy) or don't want to install a new Python library with all that this entails (dependencies, etc.) and that it seem overkill for your needs\*. This is where the good news comes in. You can create a barebones ternary diagram with the minimum necessary elements in Matplotlib in few lines of code. In short, **no installations, no new dependencies, your usual Matplotlib syntax, and no fuss**.
 
 \*_I have nothing against these libraries, quite the opposite, if you need more advanced features use them!_
 
@@ -60,13 +60,15 @@ def tri2cart(upper_apex, right_apex, left_apex):
     
     return tri2cartX(upper_apex, right_apex, left_apex), tri2cartY(upper_apex, right_apex, left_apex)
 ```
-Finally, the function that create the ternary plot using matplolib
+
+
+Finally, the ternary() function creates the ternary plot using Matplotlib. This function calls two other functions to generate the grid lines and labels of the ternary diagram for a given step size not shown here.
 
 ```python
-def ternary(upper_label=None, left_label=None, right_label=None, **fig_kw):
+def ternary(upper_label=None, left_label=None, right_label=None, grid_step=0.2, **fig_kw):
     """ No-fuss ternary plot using matplotlib, meaning: A simple
-    ternary diagram using matplolib with the minimum necessary
-    elements. It requires no other dependencies than matplolib.
+    ternary diagram using Matplotlib with the minimum necessary
+    elements. It requires no other dependencies than Matplotlib.
     Returns the figure and axe objects with which you can use the
     typical matplotlib functions such as plot(), scatter(), etc.
     Coordinates must be converted from ternary to Cartesian for use.
@@ -80,36 +82,12 @@ def ternary(upper_label=None, left_label=None, right_label=None, **fig_kw):
         the label of the right corner/apex
     left_label : str, optional
         the label of the left corner/apex
+    grid_step : float, optional
+        the grid step size, a value between 0 and 1 that divides
+        the axes evenly (e.g. 0.1, 0.2, 0.25). Default is 0.2.
     """    
-    # set grid (each 0.2)
-    slines = (# //CB
-              SimpleNamespace(x1=tri2cartX(4/5,0,1/5), y1=tri2cartY(4/5,0,1/5),
-                              x2=tri2cartX(4/5,1/5,0), y2=tri2cartY(4/5,1/5,0)),
-              SimpleNamespace(x1=tri2cartX(3/5,0,2/5), y1=tri2cartY(3/5,0,2/5),
-                              x2=tri2cartX(3/5,2/5,0), y2=tri2cartY(3/5,2/5,0)),
-              SimpleNamespace(x1=tri2cartX(2/5,0,3/5), y1=tri2cartY(2/5,0,3/5),
-                              x2=tri2cartX(2/5,3/5,0), y2=tri2cartY(2/5,3/5,0)),
-              SimpleNamespace(x1=tri2cartX(1/5,0,4/5), y1=tri2cartY(1/5,0,4/5),
-                              x2=tri2cartX(1/5,4/5,0), y2=tri2cartY(1/5,4/5,0)),
-              # //AB
-              SimpleNamespace(x1=tri2cartX(0,1/5,4/5), y1=tri2cartY(0,1/5,4/5),
-                              x2=tri2cartX(1/5,0,4/5), y2=tri2cartY(1/5,0,4/5)),
-              SimpleNamespace(x1=tri2cartX(0,2/5,3/5), y1=tri2cartY(0,2/5,3/5),
-                              x2=tri2cartX(2/5,0,3/5), y2=tri2cartY(2/5,0,3/5)),
-              SimpleNamespace(x1=tri2cartX(0,3/5,2/5), y1=tri2cartY(0,3/5,2/5),
-                              x2=tri2cartX(3/5,0,2/5), y2=tri2cartY(3/5,0,2/5)),
-              SimpleNamespace(x1=tri2cartX(0,4/5,1/5), y1=tri2cartY(0,4/5,1/5),
-                              x2=tri2cartX(4/5,0,1/5), y2=tri2cartY(4/5,0,1/5)),
-              # //AC
-              SimpleNamespace(x1=tri2cartX(0,4/5,1/5), y1=tri2cartY(0,4/5,1/5),
-                              x2=tri2cartX(1/5,4/5,0), y2=tri2cartY(1/5,4/5,0)),
-              SimpleNamespace(x1=tri2cartX(0,3/5,2/5), y1=tri2cartY(0,3/5,2/5),
-                              x2=tri2cartX(2/5,3/5,0), y2=tri2cartY(2/5,3/5,0)),
-              SimpleNamespace(x1=tri2cartX(0,2/5,3/5), y1=tri2cartY(0,2/5,3/5),
-                              x2=tri2cartX(3/5,2/5,0), y2=tri2cartY(3/5,2/5,0)),
-              SimpleNamespace(x1=tri2cartX(0,1/5,4/5), y1=tri2cartY(0,1/5,4/5),
-                              x2=tri2cartX(4/5,1/5,0), y2=tri2cartY(4/5,1/5,0))
-              )
+    # set grid
+    slines = make_grid(step=grid_step)
     
     # make plot
     fig, ax = plt.subplots(constrained_layout=True, **fig_kw)
@@ -147,6 +125,15 @@ fig, ax = ternary()
 
 ![primitives](https://raw.githubusercontent.com/marcoalopez/ternary_plots/main/imgs/primitives.png)
 
+If you need a denser (or coarser) grid, use the ``grid_step`` parameter (default is 0.2)
+
+```python
+# use a denser grid, each 0.1
+fig, ax = ternary(grid_step=0.1)
+```
+
+![denser grid](https://raw.githubusercontent.com/marcoalopez/ternary_plots/main/imgs/denser_grid.png)
+
 Plotting some points for reference
 
 ```python
@@ -171,7 +158,7 @@ ax.legend(fontsize=14)
 To use ternary diagrams it is always the same two-step process:
 
 1) Normalise and convert your ternary coordinates to Cartesian ones. For this you will use the ``tri2cart()`` function.
-2) Then initialize your ternary diagram using the ``ternary()`` function and use your ususal matplolib commands (``plot()``, ``scatter()``, etc.)
+2) Then initialize your ternary diagram using the ``ternary()`` function and use your ususal Matplotlib commands (``plot()``, ``scatter()``, etc.)
 
 > **Important: Usage examples will be available soon**
 
@@ -184,7 +171,7 @@ The notebooks are licensed under a [Creative Commons Attribution-NonCommercial-S
 
 ---
 
-_Copyright © 2022 Marco A. Lopez-Sanchez_  
+_Copyright © 2022-2026 Marco A. Lopez-Sanchez_  
 
 _Information presented on this website and the notebooks is provided without any express or implied warranty and may include technical inaccuracies or typing errors; the author reserve the right to modify or enhance the content of this website as well as the notebooks at any time without previous notice. This webpage and the notebooks are not liable for the content of external links._  
 
