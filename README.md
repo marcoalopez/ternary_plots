@@ -65,7 +65,7 @@ def tri2cart(upper_apex, right_apex, left_apex):
 Finally, the ternary() function creates the ternary plot using Matplotlib. This function calls two other functions to generate the grid lines and labels of the ternary diagram for a given step size not shown here.
 
 ```python
-def ternary(upper_label=None, left_label=None, right_label=None, grid_step=0.2, **fig_kw):
+def ternary(upper_label=None, left_label=None, right_label=None, grid_step=0.2, tick_labels=True, **fig_kw):
     """ No-fuss ternary plot using matplotlib, meaning: A simple
     ternary diagram using Matplotlib with the minimum necessary
     elements. It requires no other dependencies than Matplotlib.
@@ -85,31 +85,44 @@ def ternary(upper_label=None, left_label=None, right_label=None, grid_step=0.2, 
     grid_step : float, optional
         the grid step size, a value between 0 and 1 that divides
         the axes evenly (e.g. 0.1, 0.2, 0.25). Default is 0.2.
-    """    
+    tick_labels : bool, optional
+        if True, draw the axis tick labels that fit the chosen
+        grid. Default is True.
+    """
+
     # set grid
     slines = make_grid(step=grid_step)
-    
+
     # make plot
     fig, ax = plt.subplots(constrained_layout=True, **fig_kw)
-    
+
     # draw master (triangle) lines
     ax.plot([0, 1], [0, 0], '-', color='black', linewidth=2, zorder=11)
     ax.plot([0, 0.5], [0, 0.8660254], '-', color='black', linewidth=2, zorder=11)
     ax.plot([0.5, 1], [0.8660254, 0], '-', color='black', linewidth=2, zorder=11)
-    
+
     # draw grid lines
     for line in slines:
         ax.plot([line.x1, line.x2], [line.y1, line.y2], '-', color='grey', linewidth=1, zorder=1)
-    
+
+    # draw axis tick labels
+    if tick_labels:
+        for label in make_labels(step=grid_step):
+            ax.text(x=label.x, y=label.y, s=label.text, fontsize=10, color='grey',
+                    horizontalalignment=label.ha, verticalalignment=label.va, zorder=11)
+
     if upper_label is not None:
-        ax.text(x=0.5, y=0.91, s=upper_label, fontsize=14, horizontalalignment='center', verticalalignment='top', zorder=11)
-        ax.text(x=1.05, y=-0.01, s=right_label, fontsize=14, horizontalalignment='center', verticalalignment='top', zorder=11)
-        ax.text(x=-0.05, y=-0.01, s=left_label, fontsize=14, horizontalalignment='center', verticalalignment='top', zorder=11)
-    
+        ax.text(x=0.5, y=0.91, s=upper_label, fontsize=14,
+                horizontalalignment='center', verticalalignment='top', zorder=11)
+        ax.text(x=1.05, y=-0.01, s=right_label, fontsize=14,
+                horizontalalignment='center', verticalalignment='top', zorder=11)
+        ax.text(x=-0.05, y=-0.01, s=left_label, fontsize=14,
+                horizontalalignment='center', verticalalignment='top', zorder=11)
+
     # Prettify
     ax.set_axis_off()  # remove the box, ticks, etc.
-    ax.axis('equal')  # ensure equal aspect ratio
-    
+    ax.axis('equal')   # ensure equal aspect ratio
+
     return fig, ax
 ```
 
